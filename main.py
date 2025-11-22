@@ -31,13 +31,13 @@ class GerenciadorTarefas:
                 print('\nErro, opção invalida. Tente novamente.')
                 continue
                 
-            nova_tarefa = input('Digite a sua tarefa: ')
+            nova_tarefa = input('Digite a sua tarefa: ').strip()
         
-            if nova_tarefa.strip() == '':
+            if nova_tarefa == '':
                 print('\nErro na tarefa (entrada vazia)')
             else:
-                self.tarefas.append(nova_tarefa.strip())
-                print(f'\nTarefa {nova_tarefa.strip()} adicionada.')
+                self.tarefas.append(nova_tarefa)
+                print(f'\nTarefa {nova_tarefa} adicionada.')
                   
     def checar_tarefas(self):
         
@@ -59,21 +59,20 @@ def menu_principal():
         try:
             opcao = int(input('Digite a opção desejada de 1 a 6 : '))
         except ValueError:
-            print('Número errado, escolha novamente.')
+            print('Opção inválida, digite um numero.')
             continue
-        
-        if opcao == 1:
-            gerenciador.adicionar_tarefas()
-        elif opcao == 2:
-            gerenciador.checar_tarefas()
-            input('\nPressione uma ENTER para voltar ao Menu.')
-            continue
-        elif opcao == 6:
-            break
-        elif opcao in organizador_tarefas:
-            print(f"A opção '{organizador_tarefas[opcao]}' ainda não foi implementada.")
-        else:
-            print("Opção inválida. Tente novamente.")
+        match opcao:
+            case 1:
+                gerenciador.adicionar_tarefas()
+            case 2:
+                gerenciador.checar_tarefas()
+                input('\nPressione uma ENTER para voltar ao Menu.')
+                continue
+            case 6:
+                break
+            
+            case _:
+                print("\nOpção inválida. Tente novamente.")
             
 if __name__ == "__main__":
     menu_principal()
