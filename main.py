@@ -57,7 +57,7 @@ class GerenciadorTarefas:
             return
         self.checar_tarefas()
         try:
-            num_tarefa = int(input("digite o numero da tarefa que deseja editar: ")) -1
+            num_tarefa = int(input("Digite o numero da tarefa que deseja EDITAR: ")) -1
             if 0 <= num_tarefa <= len(self.tarefas):
                 nova_tarefa = input(f'Nova descrição para "{self.tarefas[num_tarefa]}": ').strip()
                 if nova_tarefa:
@@ -67,6 +67,19 @@ class GerenciadorTarefas:
                     print('\nEdição cancelada (entrada vazia).')
             else:
                 print('\n O numero da tarefa está inválide')
+        except ValueError:
+            print("entrada invalida. digite um numero")
+    def remover_tarefas(self):
+        self.checar_tarefas()
+        if not self.checar_tarefas:
+            return
+        try:
+            num_tarefa = int (input(f'Digite o numero da tarefa que deseja REMOVER: ')) -1
+            if 0 <= num_tarefa <=len(self.tarefas):
+                remover_tarefa = self.tarefas.pop(num_tarefa)
+                print(f'Tarefa {remover_tarefa} foi removida com sucesso!!')
+            else:
+                print('\nNumero da tarefa incorreto.')
         except ValueError:
             print("entrada invalida. digite um numero")
 
@@ -92,10 +105,11 @@ def menu_principal():
                 continue
             case 4:
                 gerenciador.editar_tarefas()
+            case 5:
+                gerenciador.remover_tarefas()
             case 6:
                 print('Saindo do sistema, obrigado.')
                 break
-            
             case _:
                 print("\nOpção inválida. Tente novamente.")
 
