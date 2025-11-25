@@ -40,7 +40,7 @@ class GerenciadorTarefas:
                 print(f'\nTarefa {nova_tarefa} adicionada.')
                   
     def checar_tarefas(self):
-        #CHECAGEM DAS TAREFAS JÁ LISTADAS
+    #CHECAGEM DAS TAREFAS JÁ LISTADAS
         if not self.tarefas:
             print('Não há tarefas listadas.')
         else:
@@ -48,8 +48,29 @@ class GerenciadorTarefas:
             for index, tarefa in enumerate(self.tarefas, start=1):
                 print(f'Tarefa {index}: {tarefa}')
             print('-------------------------')
-
+            
+    def editar_tarefas(self):
+    #FUNCAO EDITAR TAREFAS
         
+        if not self.tarefas:
+            print('\nNão há tarefas listadas')
+            return
+        self.checar_tarefas()
+        try:
+            num_tarefa = int(input("digite o numero da tarefa que deseja editar: ")) -1
+            if 0 <= num_tarefa <= len(self.tarefas):
+                nova_tarefa = input(f'Nova descrição para "{self.tarefas[num_tarefa]}": ').strip()
+                if nova_tarefa:
+                    self.tarefas[num_tarefa] = nova_tarefa
+                    print('\nTarefa editada com sucesso.')
+                else:
+                    print('\nEdição cancelada (entrada vazia).')
+            else:
+                print('\n O numero da tarefa está inválide')
+        except ValueError:
+            print("entrada invalida. digite um numero")
+
+
 gerenciador = GerenciadorTarefas() 
 #FUNÇÃO INICIAL PARA CHECAGEM DO MENU DE 1 A 6
 def menu_principal():
@@ -69,10 +90,14 @@ def menu_principal():
                 gerenciador.checar_tarefas()
                 input('\nPressione ENTER para voltar ao Menu.')
                 continue
+            case 4:
+                gerenciador.editar_tarefas()
             case 6:
+                print('Saindo do sistema, obrigado.')
                 break
             
             case _:
                 print("\nOpção inválida. Tente novamente.")
+
 #ESSA OPÇÃO IRÁ SEMPRE CHAMAR O MENU QUANDO INICIAR SAIR DE UMA DAS OPÇÕES DO MENU         
 menu_principal()
