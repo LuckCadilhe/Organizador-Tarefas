@@ -74,5 +74,5 @@ def menu_principal():
             
             case _:
                 print("\nOpção inválida. Tente novamente.")
-#ESSE IF IRÁ SEMPRE CHAMAR O MENU QUANDO           
+#ESSA OPÇÃO IRÁ SEMPRE CHAMAR O MENU QUANDO INICIAR SAIR DE UMA DAS OPÇÕES DO MENU         
 menu_principal()
