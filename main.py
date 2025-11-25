@@ -1,4 +1,4 @@
-
+#DICIONARIO PARA SER BUSCADO A OPÇÃO DE 1 A 6 NO MENU
 organizador_tarefas = {
     1: 'Adicionar nova tarefa',
     2: 'Listar tarefas existentes',
@@ -7,7 +7,7 @@ organizador_tarefas = {
     5: 'Remover tarefa',
     6: 'Sair do sistema'
 }
-
+#FUNÇÃO PARA EXIBIÇÃO DO MENU
 def exibir_menu():
         print('\n --- Menu Organizador Tarefas ---')
         for chave, valor in organizador_tarefas.items():
@@ -17,12 +17,12 @@ def exibir_menu():
 class GerenciadorTarefas:
     def __init__(self):
         self.tarefas = []
-        
+        #PRIMEIRA ETAPA ADICIONAR TAREFAS
     def adicionar_tarefas(self):
         
         while True:
             saida = input('\nDeseja adicionar uma nova tarefa? (s/n): ').lower().strip()
-            
+            #ESTRUTURA PARA SEMPRE ADICIONAR UMA TAREFA, ATÉ ONDE O CLIENTE DESEJAR
             if saida == 'n':
                 print('\nVocê saiu das tarefas.')
                 break
@@ -40,7 +40,7 @@ class GerenciadorTarefas:
                 print(f'\nTarefa {nova_tarefa} adicionada.')
                   
     def checar_tarefas(self):
-        
+        #CHECAGEM DAS TAREFAS JÁ LISTADAS
         if not self.tarefas:
             print('Não há tarefas listadas.')
         else:
@@ -51,7 +51,7 @@ class GerenciadorTarefas:
 
         
 gerenciador = GerenciadorTarefas() 
-
+#FUNÇÃO INICIAL PARA CHECAGEM DO MENU DE 1 A 6
 def menu_principal():
     while True:
         exibir_menu()
@@ -61,18 +61,18 @@ def menu_principal():
         except ValueError:
             print('Opção inválida, digite um numero.')
             continue
+        #AQUI FOI UTILIZADO MATCH-CASE PARA SER MELHOR A LEITURA AO INVÊS DE IF-ELIF-ELSE.
         match opcao:
             case 1:
                 gerenciador.adicionar_tarefas()
             case 2:
                 gerenciador.checar_tarefas()
-                input('\nPressione uma ENTER para voltar ao Menu.')
+                input('\nPressione ENTER para voltar ao Menu.')
                 continue
             case 6:
                 break
             
             case _:
                 print("\nOpção inválida. Tente novamente.")
-            
-if __name__ == "__main__":
-    menu_principal()
+#ESSE IF IRÁ SEMPRE CHAMAR O MENU QUANDO           
+menu_principal()
